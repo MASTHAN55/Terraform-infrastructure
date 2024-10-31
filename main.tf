@@ -9,7 +9,7 @@ terraform {
 
 terraform {
   backend "s3" {
-    bucket = "my-onebuck01"
+    bucket = "masthan123"
     key    = "terraform.tfstate"
     region = "ap-south-1"
   }
@@ -21,7 +21,7 @@ provider "aws" {
 }
 
 # Create a VPC
-resource "aws_vpc" "my-vpc" {
+resource "aws_vpc" "one" {
   cidr_block = "10.0.0.0/16"
   tags = {
     Name = "amazon-VPC"
@@ -30,7 +30,7 @@ resource "aws_vpc" "my-vpc" {
 
 # Create Public Subnet for web-server-1
 resource "aws_subnet" "web-subnet-1" {
-  vpc_id                  = aws_vpc.my-vpc.id
+  vpc_id                  = aws_vpc.one.id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
@@ -42,7 +42,7 @@ resource "aws_subnet" "web-subnet-1" {
 
 # Create Public Subnet for web-server-2
 resource "aws_subnet" "web-subnet-2" {
-  vpc_id                  = aws_vpc.my-vpc.id
+  vpc_id                  = aws_vpc.one.id
   cidr_block              = "10.0.2.0/24"
   availability_zone       = "ap-south-1b"
   map_public_ip_on_launch = true
@@ -55,7 +55,7 @@ resource "aws_subnet" "web-subnet-2" {
 
 # Create Private Subnet for app-server-1
 resource "aws_subnet" "application-subnet-1" {
-  vpc_id                  = aws_vpc.my-vpc.id
+  vpc_id                  = aws_vpc.one.id
   cidr_block              = "10.0.11.0/24"
   availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = false
@@ -67,7 +67,7 @@ resource "aws_subnet" "application-subnet-1" {
 
 # Create Private Subnet for app-server-2
 resource "aws_subnet" "application-subnet-2" {
-  vpc_id                  = aws_vpc.my-vpc.id
+  vpc_id                  = aws_vpc.one.id
   cidr_block              = "10.0.12.0/24"
   availability_zone       = "ap-south-1b"
   map_public_ip_on_launch = false
@@ -79,7 +79,7 @@ resource "aws_subnet" "application-subnet-2" {
 
 # Create Private Subnet for db-server-1
 resource "aws_subnet" "database-subnet-1" {
-  vpc_id            = aws_vpc.my-vpc.id
+  vpc_id            = aws_vpc.one.id
   cidr_block        = "10.0.21.0/24"
   availability_zone = "ap-south-1a"
 
@@ -90,7 +90,7 @@ resource "aws_subnet" "database-subnet-1" {
 
 # Create Private Subnet for db-server-2
 resource "aws_subnet" "database-subnet-2" {
-  vpc_id            = aws_vpc.my-vpc.id
+  vpc_id            = aws_vpc.one.id
   cidr_block        = "10.0.22.0/24"
   availability_zone = "ap-south-1b"
 
